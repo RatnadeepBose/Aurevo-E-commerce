@@ -7,7 +7,7 @@ class CheckoutManager {
         this.config = {
             validPINs: ['735101'],
             deliveryLocation: 'Jalpaiguri',
-            googleScriptURL: 'https://script.google.com/macros/s/AKfycbxyJNbTACfd6b_W2eb367iQHGd-agGiMiBjwPODK46p-GY1YuZmWCXxRveLkhjeyxhtXg/exec',
+            googleScriptURL: 'u can use it your own Google Script URL',
             maxRetries: 3,
             requestTimeout: 15000,
             mobileRegex: /^[0-9]{10}$/,
