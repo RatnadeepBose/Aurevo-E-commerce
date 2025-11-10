@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUREVO - Premium Minimalist Essentials </title>
+    <meta name="description" content="Discover AUREVO's collection of timeless unisex essentials. Premium comfort meets conscious luxury. Made in India.">
+    
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">AUREVO</h1>
+            <p class="tagline">conscious luxury</p>
+        </div>
+        <div class="header-actions">
+
+ 
+                <span class="badge hidden" id="wishlistBadge"></span>
+            </button>
+            <button class="icon-btn" id="cartBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="m2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                <span class="badge hidden" id="cartBadge"></span>
+            </button>
+        </div>
+    </header>
+    <!-- Products Grid -->
+    <main class="main-content">
+        <section class="products-section">
+            <div class="section-header">
+                <h2>Luxury Collection</h2>
+                <p>Wear what suits your vibe</p>
+            </div>
+            
+            <div class="product-grid" id="productGrid">
+                <!-- Product 1 -->
+                <div class="product-card" onclick="window.location.href='product1.html'">
+                    <div class="product-image-container" data-product="heritage">
+                        <!-- Product Image Carousel -->
+                        <div class="product-carousel-track" id="heritage-carousel">
+                            <img class="product-image active" src="black-t-shirt/Untitled design (5).png" alt="Heritage Sweatshirt - Front View">
+                            <img class="product-image" src="black-t-shirt/Untitled design (5).png" alt="Heritage Sweatshirt - Back View">
+                            <img class="product-image" src="black-t-shirt/Untitled design (5).png" alt="Heritage Sweatshirt - Side View">
+                            <img class="product-image" src="black-t-shirt/Untitled design (5).png" alt="Heritage Sweatshirt - Detail View">
+                        </div>
+                        
+                        <!-- Product Navigation Arrows -->
+                        <button class="product-arrow product-arrow-left" onclick="event.stopPropagation(); prevProductImage('heritage')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15,18 9,12 15,6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="product-arrow product-arrow-right" onclick="event.stopPropagation(); nextProductImage('heritage')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,18 15,12 9,6"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <!-- Product Image Dots -->
+                        <div class="product-dots">
+                            <span class="product-dot active" onclick="event.stopPropagation(); goToProductImage('heritage', 0)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('heritage', 1)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('heritage', 2)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('heritage', 3)"></span>
+                        </div>
+                        
+                    </div>
+                    <div class="product-info-section">
+                        <h3 class="product-title">Black-Essential Tee</h3>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <span>★★★★★</span>
+                            </div>
+                            <span class="rating-count">(124)</span>
+                        </div>
+                        <div class="product-pricing">
+  <span class="current-price">₹349</span>
+  <span class="original-price">₹499</span>
+  <span class="discount-percent">30% OFF</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" onclick="window.location.href='product2.html'">
+                    <div class="product-image-container" data-product="oversized">
+                        <!-- Product Image Carousel -->
+                        <div class="product-carousel-track" id="oversized-carousel">
+                            <img class="product-image active" src="Bottle-green-tshirt/Untitled design.png" alt="Oversized Sweatshirt - Front View">
+                            <img class="product-image" src="Bottle-green-tshirt/Untitled design.png" alt="Oversized Sweatshirt - Back View">
+                            <img class="product-image" src="Bottle-green-tshirt/Untitled design.png" alt="Oversized Sweatshirt - Side View">
+                        </div>
+                        
+                        <!-- Product Navigation Arrows -->
+                        <button class="product-arrow product-arrow-left" onclick="event.stopPropagation(); prevProductImage('oversized')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15,18 9,12 15,6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="product-arrow product-arrow-right" onclick="event.stopPropagation(); nextProductImage('oversized')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,18 15,12 9,6"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <!-- Product Image Dots -->
+                        <div class="product-dots">
+                            <span class="product-dot active" onclick="event.stopPropagation(); goToProductImage('oversized', 0)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('oversized', 1)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('oversized', 2)"></span>
+                        </div>
+                        
+                    </div>
+                    <div class="product-info-section">
+                        <h3 class="product-title">Bottle Green-Essential Tee</h3>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <span>★★★★☆</span>
+                            </div>
+                            <span class="rating-count">(89)</span>
+                        </div>
+                        <div class="product-pricing">
+  <span class="current-price">₹349</span>
+  <span class="original-price">₹499</span>
+  <span class="discount-percent">30% OFF</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" onclick="window.location.href='product3.html'">
+                    <div class="product-image-container" data-product="cropped">
+                        <!-- Product Image Carousel -->
+                        <div class="product-carousel-track" id="cropped-carousel">
+                            <img class="product-image active" src="navy-blue-tshirt/Untitled design (3).png" alt="Navy Blue-Essential Tee - Front View">
+                            <img class="product-image" src="navy-blue-tshirt/Untitled design (3).png" alt="Navy Blue-Essential Tee - Side View">
+                            <img class="product-image" src="navy-blue-tshirt/Untitled design (3).png" alt="Navy Blue-Essential Tee - Back View">
+                            <img class="product-image" src="navy-blue-tshirt/Untitled design (3).png" alt="Navy Blue-Essential Tee - Detail View">
+                        </div>
+                        
+                        <!-- Product Navigation Arrows -->
+                        <button class="product-arrow product-arrow-left" onclick="event.stopPropagation(); prevProductImage('cropped')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15,18 9,12 15,6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="product-arrow product-arrow-right" onclick="event.stopPropagation(); nextProductImage('cropped')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,18 15,12 9,6"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <!-- Product Image Dots -->
+                        <div class="product-dots">
+                            <span class="product-dot active" onclick="event.stopPropagation(); goToProductImage('cropped', 0)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('cropped', 1)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('cropped', 2)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('cropped', 3)"></span>
+                        </div>
+                        
+                    </div>
+                    <div class="product-info-section">
+                        <h3 class="product-title">Navy Blue-Essential Tee</h3>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <span>★★★★★</span>
+                            </div>
+                            <span class="rating-count">(156)</span>
+                        </div>
+                        <div class="product-pricing">
+                            <span class="current-price">₹349</span>
+                            <span class="original-price">₹499</span>
+                            <span class="discount-percent">30% OFF</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" onclick="window.location.href='product4.html'">
+                    <div class="product-image-container" data-product="hoodie">
+                        <!-- Product Image Carousel -->
+                        <div class="product-carousel-track" id="hoodie-carousel">
+                            <img class="product-image active" src="beige-t-shirt/Untitled design (4).png" alt="Premium Hoodie - Front View">
+                            <img class="product-image" src="beige-t-shirt/Untitled design (4).png" alt="Premium Hoodie - Side View">
+                            <img class="product-image" src="beige-t-shirt/Untitled design (4).png" alt="Premium Hoodie - Back View">
+                        </div>
+                        
+                        <!-- Product Navigation Arrows -->
+                        <button class="product-arrow product-arrow-left" onclick="event.stopPropagation(); prevProductImage('hoodie')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15,18 9,12 15,6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="product-arrow product-arrow-right" onclick="event.stopPropagation(); nextProductImage('hoodie')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,18 15,12 9,6"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <!-- Product Image Dots -->
+                        <div class="product-dots">
+                            <span class="product-dot active" onclick="event.stopPropagation(); goToProductImage('hoodie', 0)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('hoodie', 1)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('hoodie', 2)"></span>
+                        </div>
+                        
+                    </div>
+                    <div class="product-info-section">
+                        <h3 class="product-title">Beige-Essential Tee</h3>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <span>★★★★☆</span>
+                            </div>
+                            <span class="rating-count">(67)</span>
+                        </div>
+                       <div class="product-pricing">
+  <span class="current-price">₹349</span>
+  <span class="original-price">₹499</span>
+  <span class="discount-percent">30% OFF</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" onclick="window.location.href=''">
+                    <div class="product-image-container" data-product="tee">
+                        <!-- Product Image Carousel -->
+                        <div class="product-carousel-track" id="tee-carousel">
+                            <img class="product-image active" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg?semt=ais_hybrid&w=740&q=80" alt="Hoodie - Front View">
+                            <img class="product-image" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg?semt=ais_hybrid&w=740&q=80" alt="Hoodie - Side View">
+                            <img class="product-image" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg?semt=ais_hybrid&w=740&q=80" alt="Hoodie - Back View">
+                        </div>
+                        
+                        <!-- Product Navigation Arrows -->
+                        <button class="product-arrow product-arrow-left" onclick="event.stopPropagation(); prevProductImage('tee')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15,18 9,12 15,6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="product-arrow product-arrow-right" onclick="event.stopPropagation(); nextProductImage('tee')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,18 15,12 9,6"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <!-- Product Image Dots -->
+                        <div class="product-dots">
+                            <span class="product-dot active" onclick="event.stopPropagation(); goToProductImage('tee', 0)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('tee', 1)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('tee', 2)"></span>
+                        </div>
+                        
+                    </div>
+                    <div class="product-info-section">
+                        <h3 class="product-title">Hoodie</h3>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <span>★★★★★</span>
+                            </div>
+                            <span class="rating-count">(203)</span>
+                        </div>
+                        <div class="product-pricing">
+                            <span class="current-price">₹899</span>
+                            <span class="original-price">₹1,299</span>
+                            <span class="discount-percent">31% OFF</span>
+                        </div>
+                    </div>
+                </div> 
+
+                <!-- Product 6 -->
+                <div class="product-card" onclick="window.location.href=''">
+                    <div class="product-image-container" data-product="zip">
+                        <!-- Product Image Carousel -->
+                        <div class="product-carousel-track" id="zip-carousel">
+                            <img class="product-image active" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg?semt=ais_hybrid&w=740&q=80" alt="Sweatshirt - Front View">
+                            <img class="product-image" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg?semt=ais_hybrid&w=740&q=80" alt="Sweatshirt - Side View">
+                            <img class="product-image" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg?semt=ais_hybrid&w=740&q=80" alt="Sweatshirt - Back View">
+                        </div>
+                        
+                        <!-- Product Navigation Arrows -->
+                        <button class="product-arrow product-arrow-left" onclick="event.stopPropagation(); prevProductImage('zip')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15,18 9,12 15,6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="product-arrow product-arrow-right" onclick="event.stopPropagation(); nextProductImage('zip')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9,18 15,12 9,6"></polyline>
+                            </svg>
+                        </button>
+                        
+                        <!-- Product Image Dots -->
+                        <div class="product-dots">
+                            <span class="product-dot active" onclick="event.stopPropagation(); goToProductImage('zip', 0)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('zip', 1)"></span>
+                            <span class="product-dot" onclick="event.stopPropagation(); goToProductImage('zip', 2)"></span>
+                        </div>
+                        
+                    </div>
+                    <div class="product-info-section">
+                        <h3 class="product-title">Sweatshirt</h3>
+                        <div class="product-rating">
+                            <div class="rating-stars">
+                                <span>★★★★☆</span>
+                            </div>
+                            <span class="rating-count">(45)</span>
+                        </div>
+                        <div class="product-pricing">
+                            <span class="current-price">899</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main> 
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h3>AUREVO</h3>
+            <p>Where inclusive minimalist design meets conscious luxury. Each unisex piece crafted for everyone.</p>
+            
+            <!-- Social Media Buttons -->
+            <div class="social-links">
+                <a href="https://www.instagram.com/_.aurevo._?igsh=Y3c2ZGlkbWJsbXo2" class="social-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/share/1BTk4mQMB3/" class="social-btn" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-btn" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-btn" aria-label="Pinterest">
+                    <i class="fab fa-pinterest"></i>
+                </a>
+                <a href="#" class="social-btn" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="size-guide.html">Size Guide</a></li>
+                    <li><a href="care-instructions.html">Care Instructions</a></li>
+                    <li><a href="Returns.HTML">Returns</a></li>
+                    <li><a href="shipping.html">Shipping</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="our-story.html">Our Story</a></li>
+                    <li><a href="sustainability.html">Sustainability</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="press.html">press</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 AUREVO. All rights reserved. Made with conscious craftsmanship in India. 🌿</p>
+        <p class="developer-credit">Website developed and managed by <a href="https://ratnadeepbose.github.io/portfolio-ratnadeep/" target="_blank" class="developer-link">Ratnadeep Bose</a></p>
+    </div>
+</footer>
+
+<!-- Add Font Awesome CDN in head section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script src="simple-carousel.js"></script>
+<script src="cart-wishlist.js"></script>
+
+
+<script>
+    // Make cart button clickable in index.html
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartBtn = document.getElementById('cartBtn');
+        if (cartBtn) {
+            cartBtn.addEventListener('click', function() {
+                window.location.href = 'cart.html';
+            });
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

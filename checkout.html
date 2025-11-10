@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - AUREVO | Premium Unisex Essentials</title>
+    <meta name="description" content="Complete your order securely with AUREVO. Premium unisex essentials delivered with conscious luxury in Jalpaiguri.">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CheckoutPage",
+        "name": "AUREVO Checkout",
+        "description": "Secure checkout for premium unisex essentials",
+        "url": "https://aurevo.com/checkout.html",
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://aurevo.com"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2, 
+                    "name": "Checkout",
+                    "item": "https://aurevo.com/checkout.html"
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="checkout.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="checkout.css" as="style">
+    <link rel="preload" href="checkout.js" as="script">
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-content">
+            <a href="index.html" class="back-btn" aria-label="Go back to home page">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <polyline points="15,18 9,12 15,6"></polyline>
+                </svg>
+            </a>
+            <div>
+                <h1 class="logo">AUREVO</h1>
+                <p class="tagline">conscious luxury</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="icon-btn" id="cartBtn" aria-label="View cart">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="m2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                <span class="badge hidden" id="cartBadge" aria-live="polite"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Checkout Content -->
+    <main id="main-content" class="checkout-container" role="main">
+        <div class="checkout-header">
+            <h1>Secure Checkout</h1>
+            <p class="checkout-subtitle">Complete your order with confidence</p>
+        </div>
+
+        <div class="checkout-content">
+            <!-- Order Summary -->
+            <section class="order-summary-section" aria-labelledby="order-summary-title">
+                <h2 id="order-summary-title">Order Summary</h2>
+                <div id="orderSummary" class="order-summary" role="list" aria-label="Items in your order">
+                    <!-- Cart items will be populated here -->
+                </div>
+                <div class="order-total" role="region" aria-label="Order total breakdown">
+                    <div class="total-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Shipping:</span>
+                        <span>FREE</span>
+                    </div>
+                    <div class="total-row final-total">
+                        <span>Total:</span>
+                        <span id="finalTotal">₹0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Checkout Form -->
+            <section class="checkout-form-section" aria-labelledby="checkout-form-title">
+                <h2 id="checkout-form-title" class="visually-hidden">Checkout Form</h2>
+                <form id="checkoutForm" class="checkout-form" novalidate>
+                    <!-- Personal Information -->
+                    <fieldset class="form-section">
+                        <legend><h3>Personal Information</h3></legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required 
+                                       aria-required="true" autocomplete="name" maxlength="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required 
+                                       aria-required="true" autocomplete="email" inputmode="email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="mobile">Mobile Number *</label>
+                                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required 
+                                       aria-required="true" autocomplete="tel" inputmode="tel" maxlength="10">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Delivery Information -->
+                    <fieldset class="form-section">
+                        <legend><h3>Delivery Information</h3></legend>
+                        <div class="form-group">
+                            <label for="address">Complete Address *</label>
+                            <textarea id="address" name="address" rows="3" required 
+                                      aria-required="true" autocomplete="street-address" 
+                                      placeholder="House/Flat No., Street, Area, Landmark" maxlength="500"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" value="Jalpaiguri" readonly
+                                       aria-readonly="true" autocomplete="address-level2">
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <input type="text" id="state" name="state" value="West Bengal" readonly
+                                       aria-readonly="true" autocomplete="address-level1">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group pin-group">
+                                <label for="pincode">PIN Code *</label>
+                                <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" required 
+                                       aria-required="true" autocomplete="postal-code" inputmode="numeric" maxlength="6"
+                                       aria-describedby="pinStatus">
+                                <button type="button" id="checkPinBtn" class="check-pin-btn" aria-label="Check PIN code availability">
+                                    Check PIN
+                                </button>
+                            </div>
+                            <div id="pinStatus" class="pin-status" aria-live="polite"></div>
+                        </div>
+                        <div class="delivery-note">
+                            <p>📍 Currently delivering only in <strong>Jalpaiguri (PIN: 735101)</strong></p>
+                        </div>
+                    </fieldset>
+
+                    <!-- Payment Information -->
+                    <fieldset class="form-section">
+                        <legend><h3>Payment Method</h3></legend>
+                        <div class="payment-method" role="radiogroup" aria-labelledby="payment-method-label">
+                            <span id="payment-method-label" class="visually-hidden">Choose payment method</span>
+                            <div class="payment-option selected">
+                                <input type="radio" id="prepaid" name="payment" value="prepaid" checked>
+                                <label for="prepaid">
+                                    <div class="payment-details">
+                                        <strong>Prepaid Payment</strong>
+                                        <p>Pay online for faster processing</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="payment-note">
+                            <p>💳 All orders are <strong>prepaid only</strong>. Our executive will call you for payment confirmation.</p>
+                        </div>
+                    </fieldset>
+
+                    <!-- Additional Information -->
+                    <fieldset class="form-section">
+                        <legend><h3>Additional Information <span class="optional">(Optional)</span></h3></legend>
+                        <div class="form-group">
+                            <label for="orderNotes">Order Notes</label>
+                            <textarea id="orderNotes" name="orderNotes" rows="2" 
+                                      placeholder="Any special instructions for your order..." 
+                                      maxlength="1000"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- Terms and Conditions -->
+                    <div class="form-section">
+                        <div class="terms-section">
+                            <div class="terms-checkbox">
+                                <input type="checkbox" id="acceptTerms" name="acceptTerms" required aria-required="true">
+                                <label for="acceptTerms">
+                                    I have read and agree to the 
+                                    <button type="button" id="openTermsBtn" class="terms-link" aria-haspopup="dialog">
+                                        Terms & Conditions
+                                    </button>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Place Order Button -->
+                    <div class="place-order-section">
+                        <button type="submit" id="placeOrderBtn" class="place-order-btn" disabled aria-disabled="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M9 12l2 2 4-4"></path>
+                                <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"></path>
+                            </svg>
+                            Place Order
+                        </button>
+                        <p class="security-note">🔒 Your information is secure and encrypted</p>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+<!-- Terms and Conditions Modal -->
+<div id="termsModal" class="modal-overlay hidden" role="dialog" aria-labelledby="terms-modal-title" aria-modal="true">
+    <div class="modal-content terms-modal">
+        <div class="modal-header">
+            <h3 id="terms-modal-title">Terms & Conditions</h3>
+            <button class="modal-close" id="closeTermsBtn" aria-label="Close terms and conditions">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="terms-content">
+                <h4>AUREVO - Terms & Conditions</h4>
+                
+                <section>
+                    <h5>1. Ordering Policy</h5>
+                    <p>Orders through website/social page, Customers receive confirmation message/email.</p>
+                </section>
+                
+                <section>
+                    <h5>2. Payment Policy</h5>
+                    <p>Online payments and COD available.<br>
+                    Refund timeline for failed payments provided.</p>
+                </section>
+                
+                <section>
+                    <h5>3. Shipping & Delivery</h5>
+                    <p>Orders shipped within 2-5 days.</p>
+                </section>
+                
+                <section>
+                    <h5>4. Exchange & Return Policy</h5>
+                    <p>Accept exchange for size/defect; exclude customized/sale items; unused/unwashed products in original packaging; request within 3 days of delivery.</p>
+                </section>
+                
+                <section>
+                    <h5>5. Cancellation Policy</h5>
+                    <p>Cancel within 6 hours of placing order. Once shipped, orders cannot be canceled.</p>
+                </section>
+                
+                <section>
+                    <h5>6. Product Policy</h5>
+                    <p>Items checked for quality before dispatch; slight color variation due to lighting/screen settings not considered a defect.</p>
+                </section>
+                
+                <section>
+                    <h5>7. Privacy & Data</h5>
+                    <p>Customer information strictly confidential: never share personal data.</p>
+                </section>
+                
+                <section>
+                    <h5>8. Selling & Collaboration</h5>
+                    <p>For reselling, bulk orders, and collaboration contact us via email/DM.</p>
+                </section>
+            </div>
+            <div class="terms-actions">
+                <button id="acceptTermsBtn" class="btn-primary">Accept Terms & Conditions</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Order Success Modal -->
+    <div id="orderSuccessModal" class="modal-overlay hidden" role="dialog" aria-labelledby="success-modal-title" aria-modal="true">
+        <div class="modal-content success-modal">
+            <div class="modal-body">
+                <div class="success-content">
+                    <div class="success-icon" aria-hidden="true">✓</div>
+                    <h3 id="success-modal-title">Order Placed Successfully!</h3>
+                    <p>Thank you for choosing AUREVO</p>
+                    <div class="order-details">
+                        <p><strong>Order ID:</strong> <span id="orderIdDisplay"></span></p>
+                        <p class="executive-note">Our executive will call you shortly for order confirmation and payment processing.</p>
+                    </div>
+                    <button onclick="window.location.href='index.html'" class="btn-primary">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>AUREVO</h3>
+                <p>Where inclusive minimalist design meets conscious luxury.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 AUREVO. Made with conscious craftsmanship in India. 🌿</p>
+            <p class="developer-credit">Website developed and managed by <a href="https://ratnadeepbose.github.io/portfolio-ratnadeep/" target="_blank" class="developer-link" rel="noopener">Ratnadeep Bose</a></p>
+        </div>
+    </footer>
+
+    <script src="cart-wishlist.js"></script>
+    <script src="checkout.js"></script>
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AUREVO",
+        "description": "Premium Unisex Essentials - Conscious Luxury",
+        "url": "https://aurevo.com",
+        "logo": "https://aurevo.com/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "aurevoindia@gmail.com",
+            "contactType": "customer service"
+        },
+        "areaServed": "Jalpaiguri",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jalpaiguri",
+            "addressRegion": "West Bengal",
+            "postalCode": "735101",
+            "addressCountry": "IN"
+        }
+    }
+    </script>
+
+
+
+
+
+<script>
+    // Make cart button clickable in index.html
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartBtn = document.getElementById('cartBtn');
+        if (cartBtn) {
+            cartBtn.addEventListener('click', function() {
+                window.location.href = 'cart.html';
+            });
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>

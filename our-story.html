@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - AUREVO</title>
+    <style>
+        :root {
+            --primary: #7B5D43;
+            --primary-dark: #5D4037;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --background: #f8f8f5;
+            --card-bg: #ffffff;
+            --border: rgba(123, 93, 67, 0.3);
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .story-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .story-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .story-content p {
+            margin-bottom: 20px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .value-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .quote-section {
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+            border-left: 4px solid var(--primary);
+        }
+
+        .quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--primary);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .story-section {
+                padding: 25px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quote {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+
+    <h1 class="page-title">Our Story</h1>
+    <p class="page-subtitle">The journey of AUREVO - from a simple idea to a beloved brand</p>
+
+    <div class="story-section">
+        <h2 class="section-title">The Beginning</h2>
+        <div class="story-content">
+            <p>AUREVO started as a simple idea: to create clothes that feel like "you" — comfortable, stylish, and made to last. I noticed that most fashion either focused on flashy trends or overpriced basics, and I wanted something in between — something that truly fits your life.</p>
+            
+            <p>We began sketching designs, picking fabrics, and testing every piece myself. Every T-shirt and hoodie reflects care, thought, and a little bit of personality. It's not just about looking good; it's about feeling confident and comfortable, no matter where you are or who you're with.</p>
+            
+            <p>From small beginnings, AUREVO has grown into a brand for people who value quality, style, and simplicity. Our pieces are unisex, modern, and made with the idea that fashion should feel like it was made for you.</p>
+            
+            <p>This is AUREVO — human, real, and made with heart.</p>
+        </div>
+    </div>
+
+    <div class="story-section">
+        <h2 class="section-title">Our Values</h2>
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-icon">❤️</div>
+                <h4>Made with Heart</h4>
+                <p>Every piece is crafted with care, attention to detail, and personal touch</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">👥</div>
+                <h4>For Everyone</h4>
+                <p>Unisex designs that celebrate individuality and personal style</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">🌱</div>
+                <h4>Conscious Creation</h4>
+                <p>Thoughtful production that considers people and the planet</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">✨</div>
+                <h4>Quality First</h4>
+                <p>Premium materials and craftsmanship that stand the test of time</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="quote-section">
+        <div class="quote">"Fashion should feel like it was made for you — comfortable, confident, and completely yours."</div>
+        <div class="quote-author">- AUREVO Founder</div>
+    </div>
+</body>
+</html>

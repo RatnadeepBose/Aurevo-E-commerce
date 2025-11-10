@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navy Blue-Essential Tee - AUREVO | Premium Unisex Essentials</title>
+    <meta name="description" content="Our signature unisex crewneck, designed for everyone. Crafted from premium organic cotton blend with brushed fleece interior. ₹349">
+    
+    <!-- Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="product-page.css">
+    <style>
+        .product-page-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .product-page-container {
+                grid-template-columns: 60% 40%;
+                padding: 2rem;
+            }
+            .product-gallery-section {
+                position: sticky;
+                top: 1rem;
+                align-self: start;
+            }
+        }
+
+        /* Carousel Improvements */
+        .carousel-container {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-slide img {
+            object-fit: contain;
+            background: white;
+            padding: 2rem;
+        }
+
+        .thumbnail-strip {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .thumbnail-item {
+            width: 80px;
+            height: 80px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .thumbnail-item.active {
+            border-color: var(--primary-green);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15,18 9,12 15,6"></polyline>
+                </svg>
+            </a>
+            <div>
+                <h1 class="logo">AUREVO</h1>
+                <p class="tagline">conscious luxury</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="icon-btn" id="cartBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="8" cy="21" r="1"></circle>
+                    <circle cx="19" cy="21" r="1"></circle>
+                    <path d="m2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                <span class="badge hidden" id="cartBadge"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Product Content -->
+    <div class="product-page-container">
+        <!-- Product Image Carousel -->
+        <section class="product-gallery-section">
+            <div class="product-carousel" id="productCarousel">
+                <div class="carousel-container">
+                    <div class="image-track" id="imageTrack">
+                        <div class="product-slide active">
+                    <img id="heritage-img-1" src="navy-blue-tshirt/Untitled design (3).png" alt="Heritage Crewneck - Front View">
+                </div>
+                <div class="product-slide">
+                    <img id="heritage-img-2" src="navy-blue-tshirt/Untitled design (3).png" alt="Heritage Crewneck - Side View">
+                </div>
+                <div class="product-slide">
+                    <img id="heritage-img-3" src="navy-blue-tshirt/Untitled design (3).png" alt="Heritage Crewneck - Back View">
+                </div>
+                <div class="product-slide">
+                    <img id="heritage-img-4" src="navy-blue-tshirt/Untitled design (3).png" alt="Heritage Crewneck - Detail View">
+                </div>
+            </div>
+
+
+                    
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-arrow prev" onclick="previousImage()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15,18 9,12 15,6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-arrow next" onclick="nextImage()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                    </button>
+                    
+                    <!-- Dots Indicator -->
+                    <div class="image-dots">
+                        <span class="image-dot active" onclick="showImage(0)"></span>
+                        <span class="image-dot" onclick="showImage(1)"></span>
+                        <span class="image-dot" onclick="showImage(2)"></span>
+                        <span class="image-dot" onclick="showImage(3)"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flipkart-Style Product Details -->
+        <main class="flipkart-product-layout">
+            <!-- 1. Product Title & Breadcrumb -->
+            <div class="product-header-section">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Heritage Crewneck</span>
+                </div>
+                <h1 class="product-title">Navy Blue-Essential Tee</h1>
+                <div class="product-badges">
+                    <span class="badge bestseller">Bestseller</span>
+                    <span class="badge unisex">🌿 Unisex</span>
+                    <span class="badge organic">Organic</span>
+                </div>
+                <div class="rating-section">
+                    <div class="stars">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star half">★</span>
+                    </div>
+                    <span class="rating-text">4.8 (124 reviews)</span>
+                </div>
+            </div>
+
+            <!-- 2. Price Section -->
+            <div class="price-section">
+                <div class="price-main">
+                       <span class="current-price">₹349</span>
+    <span class="original-price">₹499</span>
+    <span class="discount-percent">30% OFF</span>
+                </div>
+                <div class="savings-info"></div>
+                <div class="delivery-info-compact">
+                    <span class="delivery-text">🚚 Free delivery </span>
+                </div>
+            </div>
+
+            <!-- 3. Size Selection -->
+            <div class="size-section">
+                <h3>Size: <span id="selectedSize">M</span></h3>
+                <div class="size-options">
+                   <!--  <button class="size-btn" data-size="XS">XS</button>
+                    <button class="size-btn" data-size="S">S</button>-->
+                    <button class="size-btn selected" data-size="M">M</button>
+                   <!-- <button class="size-btn" data-size="L">L</button>
+                    <button class="size-btn" data-size="XL">XL</button>
+                    <button class="size-btn" data-size="XXL">XXL</button>
+                </div>-->
+                <button class="size-guide-link">Size Guide</button>
+            </div>
+
+            <!-- 4. Color Selection 
+            <div class="color-section">
+                <h3>Color: <span id="selectedColor">Stone</span></h3>
+                <div class="color-options">
+                    <button class="color-btn selected" data-color="Stone" style="background-color: #B8A595;" title="Stone"></button>
+                    <button class="color-btn" data-color="Sage" style="background-color: #B8C5A6;" title="Sage"></button>
+                    <button class="color-btn" data-color="Cream" style="background-color: #FAF7F2;" title="Cream"></button>
+                </div>
+            </div>-->
+
+            <!-- 5. Features Section -->
+            <div class="features-section">
+                <h3>Product Features</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">🌱</span>
+                        <div class="feature-text">
+                            <strong>100% Sustainable Materials</strong>
+                            <p>Made from organic cotton and recycled polyester</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">👥</span>
+                        <div class="feature-text">
+                            <strong>Unisex Design</strong>
+                            <p>Relaxed fit suitable for all body types</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🇮🇳</span>
+                        <div class="feature-text">
+                            <strong>Made in India</strong>
+                            <p>Crafted with conscious luxury</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🧵</span>
+                        <div class="feature-text">
+                            <strong>Premium Construction</strong>
+                            <p>Brushed fleece interior for ultimate comfort</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Specifications -->
+            <div class="specs-section">
+                <h3>Product Details</h3>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Material:</span>
+                        <span class="spec-value">80% Organic Cotton, 20% Recycled Polyester</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Weight:</span>
+                        <span class="spec-value">280 GSM</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Fit:</span>
+                        <span class="spec-value">Relaxed unisex fit</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Care:</span>
+                        <span class="spec-value">Machine wash cold, tumble dry low</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Delivery & Returns -->
+            <div class="delivery-section">
+                <h3>Delivery & Returns</h3>
+                <div class="delivery-options">
+                    <div class="delivery-item">
+                        <span class="delivery-icon">🚚</span>
+                        <div class="delivery-text">
+                            <strong>Free Delivery</strong>
+                            <p> • 2-4 days</p>
+                        </div>
+                    </div>
+                    <div class="delivery-item">
+                        <span class="delivery-icon">↩️</span>
+                        <div class="delivery-text">
+                            <strong>Easy Returns</strong>
+                            <p>3-day return policy • Free pickup</p>
+                        </div>
+                    </div>
+                    <div class="delivery-item">
+                        <span class="delivery-icon">✨</span>
+                        <div class="delivery-text">
+                            <strong>Quality Assured</strong>
+                            <p>Premium organic materials • Eco-friendly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Additional Sections Outside the Main Container -->
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-summary">
+            <div class="rating-breakdown">
+                <span class="overall-rating">4.8</span>
+                <div class="rating-bars">
+                    <div class="rating-bar">
+                        <span>5★</span>
+                        <div class="bar"><div class="fill" style="width: 85%"></div></div>
+                        <span>85%</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>4★</span>
+                        <div class="bar"><div class="fill" style="width: 12%"></div></div>
+                        <span>12%</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>3★</span>
+                        <div class="bar"><div class="fill" style="width: 3%"></div></div>
+                        <span>3%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="review-item">
+            <div class="review-header">
+                <span class="reviewer-name">Arjun K.</span>
+                <div class="review-rating">★★★★★</div>
+            </div>
+            <p class="review-text">"Perfect fit and amazing quality! The unisex design works great for both me and my partner. Highly recommend!"</p>
+            <span class="review-date">2 weeks ago</span>
+        </div>
+        
+        <div class="review-item">
+            <div class="review-header">
+                <span class="reviewer-name">Priya M.</span>
+                <div class="review-rating">★★★★★</div>
+            </div>
+            <p class="review-text">"Love the organic cotton feel. So soft and comfortable. The earthy colors are exactly what I was looking for."</p>
+            <span class="review-date">1 month ago</span>
+        </div>
+    </section>
+
+
+
+    <!-- Flipkart-Style Sticky Bottom Actions -->
+<div class="sticky-bottom-actions">
+    <div class="action-buttons">
+        <button class="btn-secondary" id="addToCartBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="8" cy="21" r="1"></circle>
+                <circle cx="19" cy="21" r="1"></circle>
+                <path d="m2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+            </svg>
+            Add to Cart
+        </button>
+        <button class="btn-buy-now" id="buyNowBtn">
+            Buy Now
+        </button>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>AUREVO</h3>
+                <p>Where inclusive minimalist design meets conscious luxury.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 AUREVO. Made with conscious craftsmanship in India. 🌿</p>
+            <p class="developer-credit">Website developed and managed by <a href="https://ratnadeepbose.github.io/portfolio-ratnadeep/" target="_blank" class="developer-link">Ratnadeep Bose</a></p>
+        </div>
+    </footer>
+
+    <script src="simple-product-carousel.js"></script>
+    <script src="product-page.js"></script>
+    <script src="cart-wishlist.js"></script>
+
+
+
+
+
+
+<script>
+    // Make cart button clickable in index.html
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartBtn = document.getElementById('cartBtn');
+        if (cartBtn) {
+            cartBtn.addEventListener('click', function() {
+                window.location.href = 'cart.html';
+            });
+        }
+    });
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

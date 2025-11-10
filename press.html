@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press - AUREVO</title>
+    <style>
+        :root {
+            --primary: #7B5D43;
+            --primary-dark: #5D4037;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --background: #f8f8f5;
+            --card-bg: #ffffff;
+            --border: rgba(123, 93, 67, 0.3);
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .press-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .intro-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            padding: 25px;
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .press-kit {
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .press-kit h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .kit-items {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .kit-items li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .kit-items li:last-child {
+            border-bottom: none;
+        }
+
+        .kit-icon {
+            color: var(--primary);
+            font-weight: bold;
+            min-width: 20px;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 30px;
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .contact-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .press-section {
+                padding: 25px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+
+    <h1 class="page-title">AUREVO in the Press</h1>
+    <p class="page-subtitle">Building a name in modern, minimalist, and sustainable fashion</p>
+
+    <div class="press-section">
+        <h2 class="section-title">Media Recognition</h2>
+        <div class="intro-content">
+            <p>AUREVO is building a name for itself in modern, minimalist, and sustainable fashion. Our designs have been featured and recognized for combining style with substance, and for our commitment to conscious creation.</p>
+            
+            <p>We're proud of the attention our work has received and grateful for the platform to share our mission with a wider audience.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">✨</div>
+                <h4>Quality Craftsmanship</h4>
+                <p>T-shirts and hoodies that combine style and comfort with exceptional attention to detail and durability.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🌱</div>
+                <h4>Sustainable Practices</h4>
+                <p>Eco-friendly fabrics and ethical production methods that respect both people and the planet.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">👥</div>
+                <h4>Unisex, Versatile Design</h4>
+                <p>Pieces made for everyone, celebrating individuality while maintaining timeless appeal.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="press-kit">
+        <h3>Press Kit & Assets</h3>
+        <p>For media inquiries, collaborations, or features, we provide comprehensive press materials including:</p>
+        
+        <ul class="kit-items">
+            <li>
+                <span class="kit-icon">📷</span>
+                <span>High-resolution product images</span>
+            </li>
+            <li>
+                <span class="kit-icon">📄</span>
+                <span>Brand story and background information</span>
+            </li>
+            <li>
+                <span class="kit-icon">🎨</span>
+                <span>Brand logos and guidelines</span>
+            </li>
+            <li>
+                <span class="kit-icon">👤</span>
+                <span>Founder bio and interviews</span>
+            </li>
+            <li>
+                <span class="kit-icon">📊</span>
+                <span>Company facts and sustainability metrics</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="contact-section">
+        <h3>Media Inquiries</h3>
+        <p>For press inquiries, collaborations, or features, please contact us at:</p>
+        <p><strong>Email:</strong> aurevoindia@gmail.com</p>
+    </div>
+</body>
+</html>

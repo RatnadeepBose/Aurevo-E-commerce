@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Instructions - AUREVO</title>
+    <style>
+        :root {
+            --primary: #7B5D43;
+            --primary-dark: #5D4037;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --background: #f8f8f5;
+            --card-bg: #ffffff;
+            --border: rgba(123, 93, 67, 0.3);
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .care-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .instruction-list {
+            list-style: none;
+        }
+
+        .instruction-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .instruction-list li:last-child {
+            border-bottom: none;
+        }
+
+        .icon {
+            color: var(--primary);
+            font-weight: bold;
+            min-width: 20px;
+        }
+
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .symbol-item {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--card-bg);
+        }
+
+        .symbol-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            text-align: center;
+            padding: 30px;
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .care-section {
+                padding: 20px;
+            }
+            
+            .symbol-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+
+    <h1 class="page-title">Care Instructions</h1>
+    <p class="page-subtitle">Proper care ensures your AUREVO garments maintain their quality and longevity</p>
+
+    <div class="care-section">
+        <h2 class="section-title">Washing Guidelines</h2>
+        <ul class="instruction-list">
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Machine wash cold</strong> (below 30°C) with similar colors</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Turn garment inside out</strong> before washing</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Use mild detergent</strong> — no bleach or harsh chemicals</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Wash separately</strong> for the first few washes to prevent color transfer</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="care-section">
+        <h2 class="section-title">Drying & Ironing</h2>
+        <ul class="instruction-list">
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Do not tumble dry</strong> — hang to dry in shade</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Do not iron directly</strong> on prints or embroidery</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span><strong>If needed, iron inside out</strong> on low heat setting</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Avoid wringing</strong> or stretching the fabric when wet</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="care-section">
+        <h2 class="section-title">Storage & Maintenance</h2>
+        <ul class="instruction-list">
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Store in a cool, dry place</strong> away from direct sunlight</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Fold heavy knits</strong> instead of hanging to maintain shape</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Use padded hangers</strong> for delicate items when hanging</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span><strong>Clean before storing</strong> for extended periods</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="care-section">
+        <h2 class="section-title">Care Symbols Guide</h2>
+        <div class="symbol-grid">
+            <div class="symbol-item">
+                <div class="symbol-icon">💧</div>
+                <p><strong>Machine Wash</strong><br>Cold water only</p>
+            </div>
+            <div class="symbol-item">
+                <div class="symbol-icon">👕</div>
+                <p><strong>Inside Out</strong><br>Wash inside out</p>
+            </div>
+            <div class="symbol-item">
+                <div class="symbol-icon">☀️</div>
+                <p><strong>Line Dry</strong><br>In shade only</p>
+            </div>
+            <div class="symbol-item">
+                <div class="symbol-icon">🔥</div>
+                <p><strong>Low Iron</strong><br>Inside out</p>
+            </div>
+            <div class="symbol-item">
+                <div class="symbol-icon">🚫</div>
+                <p><strong>No Bleach</strong><br>Avoid all bleaches</p>
+            </div>
+            <div class="symbol-item">
+                <div class="symbol-icon">🌀</div>
+                <p><strong>No Tumble Dry</strong><br>Air dry only</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-info">
+        <h3>Need Assistance?</h3>
+        <p>Contact us for any questions about product care</p>
+        <p><strong>Email:</strong> aurevoindia@gmail.com</p>
+        <p><strong>Phone/WhatsApp:</strong> 9883068131</p>
+    </div>
+</body>
+</html>

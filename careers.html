@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - AUREVO</title>
+    <style>
+        :root {
+            --primary: #7B5D43;
+            --primary-dark: #5D4037;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --background: #f8f8f5;
+            --card-bg: #ffffff;
+            --border: rgba(123, 93, 67, 0.3);
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .careers-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .intro-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .intro-content p {
+            margin-bottom: 20px;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .role-item {
+            padding: 25px;
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .role-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .role-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .benefits-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+
+        .benefit-icon {
+            color: var(--primary);
+            font-weight: bold;
+            min-width: 20px;
+        }
+
+        .apply-section {
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            border-left: 4px solid var(--primary);
+        }
+
+        .apply-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .careers-section {
+                padding: 25px;
+            }
+            
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">←</a>
+
+    <h1 class="page-title">Careers at AUREVO</h1>
+    <p class="page-subtitle">Join our team of creators, thinkers, and makers</p>
+
+    <div class="careers-section">
+        <h2 class="section-title">Join Our Journey</h2>
+        <div class="intro-content">
+            <p>At AUREVO, we're more than a clothing brand — we're a team of creators, thinkers, and makers who value style, quality, and authenticity.</p>
+            
+            <p>We're always looking for passionate people to join us in building a brand that stands for conscious luxury and timeless design.</p>
+            
+            <p>If you're creative, curious, and love fashion, we want to hear from you. Grow with us, make an impact, and be part of the AUREVO journey.</p>
+        </div>
+
+        <div class="roles-grid">
+            <div class="role-item">
+                <div class="role-icon">🎨</div>
+                <h4>Design & Product Development</h4>
+                <p>Crafting the next line of T-shirts, hoodies, and accessories with attention to detail and sustainable practices.</p>
+            </div>
+            <div class="role-item">
+                <div class="role-icon">📱</div>
+                <h4>Marketing & Social Media</h4>
+                <p>Telling our story and connecting with our community through authentic content and engaging campaigns.</p>
+            </div>
+            <div class="role-item">
+                <div class="role-icon">👥</div>
+                <h4>Operations & Customer Experience</h4>
+                <p>Ensuring our customers get the best experience from browsing to delivery and beyond.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="careers-section">
+        <h2 class="section-title">Why Work With Us</h2>
+        <ul class="benefits-list">
+            <li>
+                <span class="benefit-icon">•</span>
+                <span><strong>Creative Freedom</strong> - Bring your ideas to life in a supportive environment</span>
+            </li>
+            <li>
+                <span class="benefit-icon">•</span>
+                <span><strong>Growth Opportunities</strong> - Learn and grow with a rapidly expanding brand</span>
+            </li>
+            <li>
+                <span class="benefit-icon">•</span>
+                <span><strong>Meaningful Work</strong> - Contribute to a brand that values sustainability and ethics</span>
+            </li>
+            <li>
+                <span class="benefit-icon">•</span>
+                <span><strong>Collaborative Culture</strong> - Work with passionate people who share your values</span>
+            </li>
+            <li>
+                <span class="benefit-icon">•</span>
+                <span><strong>Make an Impact</strong> - Help shape the future of conscious fashion in India</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="apply-section">
+        <h2 class="section-title">Ready to Join Us?</h2>
+        <p>We're always excited to meet passionate individuals who want to grow with us.</p>
+        <p>Send your resume and portfolio to:</p>
+        <p><strong>aurevoindia@gmail.com</strong></p>
+        <a href="mailto:aurevoindia@gmail.com" class="apply-btn">Apply Now</a>
+    </div>
+</body>
+</html>

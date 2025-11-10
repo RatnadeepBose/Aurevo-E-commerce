@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Size Guide - AUREVO</title>
+    <style>
+        :root {
+            --primary: #7B5D43;
+            --primary-light: #8D6F55;
+            --primary-dark: #5D4037;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --background: #f8f8f5;
+            --card-bg: #ffffff;
+            --border: rgba(123, 93, 67, 0.3);
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background);
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .size-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .size-table th,
+        .size-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .size-table th {
+            background-color: rgba(123, 93, 67, 0.05);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .measurement-guide {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .measurement-item {
+            padding: 20px;
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .measurement-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .note-box {
+            background: rgba(123, 93, 67, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .note-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .size-section {
+                padding: 20px;
+            }
+            
+            .size-table {
+                font-size: 0.9rem;
+            }
+            
+            .size-table th,
+            .size-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← </a>
+
+    <h1 class="page-title">Size Guide</h1>
+    <p class="page-subtitle">Find your perfect fit with our Indian sizing chart</p>
+
+    <div class="size-section">
+        <h2 class="section-title">T-Shirt Sizing</h2>
+        <table class="size-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Chest (inches)</th>
+                    <th>Length (inches)</th>
+                    <th>Shoulder (inches)</th>
+                    <th>Sleeve (inches)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>M</strong></td>
+                    <td>40</td>
+                    <td>27</td>
+                    <td>17</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td><strong>L</strong></td>
+                    <td>42</td>
+                    <td>28</td>
+                    <td>18</td>
+                    <td>8.5</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="size-section">
+        <h2 class="section-title">Hoodie Sizing</h2>
+        <table class="size-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Chest (inches)</th>
+                    <th>Length (inches)</th>
+                    <th>Shoulder (inches)</th>
+                    <th>Sleeve (inches)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>M</strong></td>
+                    <td>42</td>
+                    <td>27</td>
+                    <td>18</td>
+                    <td>24</td>
+                </tr>
+                <tr>
+                    <td><strong>L</strong></td>
+                    <td>44</td>
+                    <td>28</td>
+                    <td>19</td>
+                    <td>25</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="size-section">
+        <h2 class="section-title">How to Measure</h2>
+        <div class="measurement-guide">
+            <div class="measurement-item">
+                <h4>Chest</h4>
+                <p>Measure around the fullest part of your chest, keeping the tape horizontal</p>
+            </div>
+            <div class="measurement-item">
+                <h4>Length</h4>
+                <p>Measure from the highest point of the shoulder to the bottom hem</p>
+            </div>
+            <div class="measurement-item">
+                <h4>Shoulder</h4>
+                <p>Measure from shoulder seam to shoulder seam across the back</p>
+            </div>
+            <div class="measurement-item">
+                <h4>Sleeve</h4>
+                <p>Measure from shoulder seam to the end of the sleeve</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="note-box">
+        <h4>Important Notes</h4>
+        <p>• All measurements are in inches</p>
+        <p>• Measurements may vary slightly (±1 inch) due to fabric characteristics</p>
+        <p>• For the best fit, compare your body measurements with our size chart</p>
+        <p>• If you're between sizes, we recommend choosing the larger size</p>
+    </div>
+</body>
+</html>
