@@ -200,9 +200,9 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 📞 Support
 
 For setup help or customization requests:
-- 📧 Email: [your-email@example.com]
-- 💬 GitHub Issues: [Create an issue](https://github.com/YOUR_USERNAME/aurevo-premium-ecommerce/issues)
-- 📱 WhatsApp: [Your WhatsApp number]
+- 📧 Email: 
+- 💬 GitHub Issues:
+- 📱 WhatsApp: 
 
 ## 🚀 Deployment Status
 
