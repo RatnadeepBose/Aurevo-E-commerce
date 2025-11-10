@@ -69,15 +69,9 @@
     color: white;
 }
 
-.badge.unisex {
-    background: var(--rolex-green);
-    color: white;
-}
 
-.badge.organic {
-    background: #4CAF50;
-    color: white;
-}
+
+
 
 .rating-section {
     display: flex;
@@ -585,25 +579,7 @@
     backdrop-filter: blur(10px);
 }
 
-.unisex-badge {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
-    backdrop-filter: blur(10px);
-}
 
-.unisex-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    display: block;
-    margin-bottom: var(--spacing-xs);
-}
-
-.unisex-badge p {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    margin: 0;
-}
 
 /* ===== PRODUCT CAROUSEL ===== */
 .product-carousel {
@@ -763,10 +739,7 @@
     color: var(--text-white);
 }
 
-.badge.organic {
-    background: #10b981;
-    color: var(--text-white);
-}
+
 
 /* ===== PRODUCT DESCRIPTION ===== */
 .product-description {
