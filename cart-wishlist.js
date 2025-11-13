@@ -258,8 +258,8 @@ class CartWishlistManager {
                 image: 'https://www.pacsun.com/dw/image/v2/AAJE_PRD/on/demandware.static/-/Sites-pacsun_storefront_catalog/default/dw5edbb3a2/product_images/0192250500814NEW_00_120.jpg?sw=800'
             },
             'essential-tee': {
-                name: 'Essential Cotton Tee',
-                price: 899,
+                name: 'Grey Essential Tee',
+                price: 349,
                 originalPrice: 1299, 
                 image: 'https://www.pacsun.com/dw/image/v2/AAJE_PRD/on/demandware.static/-/Sites-pacsun_storefront_catalog/default/dw16583eba/product_images/0740609850036NEW_00_020.jpg?sw=800'
             },
