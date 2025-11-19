@@ -1,171 +1,310 @@
-# 🌿 AUREVO - Premium Unisex Essentials
+# Aurevo — Static E‑Commerce Frontend
 
-> **Where inclusive minimalist design meets conscious luxury**
+AUREVO is a small, static, single-page-style e-commerce frontend built with plain HTML, CSS and vanilla JavaScript. It showcases a minimal, conscious-luxury store interface with product cards, product pages, client-side cart/wishlist (localStorage), and small UI enhancements like badges and carousels.
 
-A premium e-commerce website for sustainable, unisex fashion essentials. Built with modern web technologies and integrated with Google Sheets for seamless order management.
+This README explains project purpose, how to run locally, key files and folders, how to test interactive features (cart and carousels), and useful git commands (from `GITBASH.MD`) to publish changes.
 
-![AUREVO Banner](https://via.placeholder.com/1200x400/005A2B/FFFFFF?text=AUREVO+-+Conscious+Luxury)
+**Project Goals**:
+- Lightweight static site (no build step) demonstrating a minimal product storefront
+- Accessible, responsive product pages and homepage with product carousels
+- Client-side cart and wishlist persisted to `localStorage`
 
-## ✨ Features
+**Quick Overview**
+- Tech: HTML, CSS, JavaScript (no frameworks)
+- Location: project root contains all pages and assets
+- Cart persistence: `localStorage` keys: `aurevo_cart`, `aurevo_wishlist`
 
-### 🛍️ **E-Commerce Core**
-- **Premium Product Catalog** with responsive image carousels
-- **Smart Shopping Cart** with localStorage persistence
-- **Wishlist Functionality** with heart animations
-- **Secure Checkout Process** with form validation
-- **Real-time Notifications** with premium animations
+**Preview**
+Open `index.html` in a browser or serve the folder with a simple local server (preferred) to avoid file:// asset issues.
 
-### 🎨 **Design & UX**
-- **Minimalist Premium Design** inspired by luxury brands
-- **Rolex Green & Gold** color scheme
-- **Mobile-First Responsive** design
-- **Premium Typography** with Google Fonts integration
-- **Smooth Animations** and micro-interactions
+## Getting Started (Local)
 
-### 🔧 **Technical Features**
-- **Google Sheets Integration** for order management
-- **Email Notifications** for customers and store owner
-- **PIN Code Validation** (Jalpaiguri - 735101 only)
-- **Terms & Conditions Modal** with acceptance tracking
-- **Loading States** and error handling
+Recommended: serve the folder so relative assets load correctly.
 
-### 🌱 **Business Logic**
-- **Conscious Luxury Branding** - sustainable fashion focus
-- **Unisex Products** - inclusive design for everyone
-- **Local Delivery** - Jalpaiguri area only (PIN: 735101)
-- **Prepaid Orders** - secure payment processing
-- **Executive Confirmation** - phone call verification system
-
-## 🚀 Live Demo
-
-- **Website**: [Your GitHub Pages URL]
-- **Admin Panel**: [Your Google Sheets URL]
-
-## 📁 Project Structure
-
-```
-aurevo-premium-ecommerce/
-├── 📄 index.html              # Homepage with product grid
-├── 🛍️ product1.html          # Heritage Crewneck product page
-├── 🛍️ product2.html          # Oversized Comfort product page
-├── 🛒 checkout.html           # Secure checkout page
-├── 🎨 style.css               # Main stylesheet
-├── 🎨 checkout.css            # Checkout page styles
-├── 🎨 product-page.css        # Product page styles
-├── ⚙️ script.js               # Homepage functionality
-├── ⚙️ cart-wishlist.js        # Cart & wishlist management
-├── ⚙️ checkout.js             # Checkout process & validation
-├── ⚙️ product-page.js         # Product page interactions
-├── ⚙️ simple-carousel.js      # Image carousel functionality
-├── ⚙️ simple-product-carousel.js # Product carousel
-├── ☁️ google-apps-script.gs   # Google Apps Script for orders
-├── 📚 SETUP_INSTRUCTIONS.md   # Detailed setup guide
-└── 📄 README.md               # This file
+PowerShell (from project root):
+```powershell
+cd 'C:\Users\boser\Downloads\aurevo-ecommerce'
+python -m http.server 8000
+# then open http://localhost:8000/index.html
 ```
 
-## 🛠️ Quick Setup
+Alternatively, open `index.html` or any `productX.html` directly in your browser (but some browsers block certain local requests).
 
-### Prerequisites
-- Web browser (Chrome, Firefox, Safari, Edge)
-- Google account (for order management)
-- Text editor (VS Code recommended)
+## Key Files & Structure
 
-### 1. Clone the Repository
+- `index.html` — Homepage with product grid and small product-card carousels.
+- `product1.html` … `product6.html` — Individual product pages (product details, sticky add-to-cart actions).
+- `style.css` — Global styles and UI tokens (colors, spacing, header styles, badges, etc.).
+- `product-page.css` — Page-level product styles used by product pages.
+- `script.js` — Larger site scripts (carousel manager, helpers). This file contains multiple utilities used across pages.
+- `simple-carousel.js` — Homepage product card carousel implementation (used by `index.html`).
+- `simple-product-carousel.js`, `product-carousel.js` — smaller/carousel helpers used by product pages.
+- `cart-wishlist.js` — Cart and wishlist manager (client-side storage, badge updates, modal UI).
+- `product-page.js` — Product-page interactions (image gallery, size selection, etc.).
+- `README.md` — (this file)
+
+Assets and product images are in folders like `black-t-shirt/`, `beige-t-shirt/`, etc.
+
+## Cart & Wishlist Behavior
+
+- Cart and wishlist are managed by `CartWishlistManager` in `cart-wishlist.js`.
+- Data stored in `localStorage`:
+	- `aurevo_cart` — array of cart items (id, name, price, size, color, quantity, image, addedAt)
+	- `aurevo_wishlist` — wishlist items
+- Badge elements: header buttons should include badge spans with the IDs `cartBadge` and `wishlistBadge`. `cart-wishlist.js` will read and update every element with these IDs on the page.
+
+Common interactions:
+- Click **Add to Cart** (`#addToCartBtn`) on a product page to add one unit to `aurevo_cart` (size required).
+- Click the header cart button (`#cartBtn`) to open a small cart modal.
+
+To clear cart data manually (dev):
+```javascript
+localStorage.removeItem('aurevo_cart');
+localStorage.removeItem('aurevo_wishlist');
+```
+
+## Homepage Carousels (Product cards)
+
+- `simple-carousel.js` powers the small carousels inside each product card on `index.html`. Each product card uses a `data-product` attribute to identify the carousel instance, e.g.:
+	- `<div class="product-image-container" data-product="heritage">`
+- The script maps `data-product` keys to internal state. Make sure each product on the same page uses a unique `data-product` key (a previous bug duplicated `heritage`, which was fixed by renaming product 5 to `tee`).
+
+JS Entry points (global):
+- `nextProductImage(key)`, `prevProductImage(key)`, `goToProductImage(key, index)` — used by inline handlers in `index.html` to control a specific product card's carousel.
+
+## Product Page Gallery
+
+- Product pages use `simple-product-carousel.js` / `product-page.js` to set up a sticky gallery, thumbnails and navigation arrows.
+
+## How to Test (Quick Manual Checklist)
+
+1. Start local server (see above).
+2. Open `index.html`:
+	 - Click arrows on each product card — images should cycle independently.
+	 - Click dots to jump to a specific image.
+	 - On mobile, swipe on the product card to change images.
+3. Open `product1.html` (or other product pages):
+	 - Select a size, click **Add to Cart** — the header badge should update.
+	 - Click the cart icon to open the in-page cart modal.
+	 - Verify `localStorage.getItem('aurevo_cart')` contains the item(s).
+4. Clear `localStorage` and re-test if needed.
+
+## Development Notes & Tips
+
+- Header consistency: header markup exists on multiple pages. If you edit the header, update each HTML file or consider a small JS include to inject the header markup at runtime for maintainability.
+- Keep `data-product` unique for each homepage product carousel — otherwise multiple cards will collide in `productCarouselState`.
+- `cart-wishlist.js` exposes a `cartWishlist` instance on `window` for debugging: use `cartWishlist.productCarouselStatus()` or inspect `cartWishlist.cart` in devtools.
+
+## Common Git Commands (from `GITBASH.MD`)
+Use these commands to initialize the repository and push changes to GitHub (adapt as needed):
+
 ```bash
-git clone https://github.com/YOUR_USERNAME/aurevo-premium-ecommerce.git
-cd aurevo-premium-ecommerce
+cd "C:\Users\boser\Downloads\aurevo-ecommerce"
+git init
+git remote set-url origin https://github.com/RatnadeepBose/Aurevo-E-commerce.git
+git add .
+git commit -m "Initial commit - new Aurevo E-Commerce project"
+git branch -M main
+git push -u origin main --force
 ```
 
-### 2. Set Up Google Sheets Integration
-1. Create a new Google Sheet at [sheets.google.com](https://sheets.google.com)
-2. Copy the Sheet ID from the URL
-3. Go to [script.google.com](https://script.google.com)
-4. Create a new project and paste the code from `google-apps-script.gs`
-5. Replace `YOUR_SHEET_ID_HERE` with your Sheet ID
-6. Deploy as Web App with "Anyone" access
-7. Copy the Web App URL and update `checkout.js` line 14
+Note: `--force` will overwrite the remote branch history — use with care.
 
-### 3. Configure the Website
-1. Open `checkout.js`
-2. Replace `YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE` with your Web App URL
-3. Optionally update the store email in the Google Apps Script
+## Known Issues / TODOs
 
-### 4. Deploy to GitHub Pages
-1. Push your code to GitHub
-2. Go to Repository Settings > Pages
-3. Select "Deploy from a branch" > "main"
-4. Your site will be live at `https://YOUR_USERNAME.github.io/aurevo-premium-ecommerce`
+- Header duplication across pages — consider centralizing header.
+- Add small unit/integration tests (none present currently).
+- Improve accessibility: add `aria-live` for cart badge updates, ensure modals trap focus.
+- Consider bundling / minification if the project grows (currently static for clarity).
+# Aurevo — Static E‑Commerce Frontend (Detailed)
 
-## 📖 Detailed Setup Guide
+AUREVO is a lightweight static storefront built with plain HTML, CSS and JavaScript. The project demonstrates a minimal product catalog and product pages, client-side cart/wishlist storage (via `localStorage`), responsive layouts, and small UI features such as product-card carousels and modal cart previews.
 
-For complete setup instructions, see [SETUP_INSTRUCTIONS.md](SETUP_INSTRUCTIONS.md)
+This README is expanded with an explicit Table of Contents, detailed file-by-file documentation, developer workflows, the `CartWishlistManager` API surface (useful when extending or debugging), JSON examples of stored data, troubleshooting steps, accessibility notes, and testing/checklist instructions.
 
-## 🎯 Key Technologies
+## Table of Contents
+- Project summary
+- Quick start (local)
+- File map (detailed)
+- Cart & Wishlist: behavior and API
+- Homepage carousels and how to add products
+- Product page gallery
+- Debugging and developer utilities
+- Accessibility checklist
+- Testing checklist
+- Deployment & git workflow
+- Known issues and future improvements
+- Contributing and license
 
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **Styling**: Custom CSS with CSS Grid & Flexbox
-- **Fonts**: Google Fonts (Playfair Display, Cormorant Garamond, Source Sans 3)
-- **Backend**: Google Apps Script
-- **Database**: Google Sheets
-- **Hosting**: GitHub Pages
-- **Version Control**: Git & GitHub
+-------------------------------------------------------------------------------
 
-## 🛒 Order Management
+## Project summary
+- Static site (no build tools). Good for prototypes and simple storefront demos.
+- Tech: vanilla JS, modern CSS (uses CSS variables), no external build or server required.
+- Store data is intentionally client-side (localStorage) for a simple demo experience.
 
-### Customer Journey
-1. Browse products on homepage
-2. View product details with image carousel
-3. Select size, color, and add to cart/wishlist
-4. Proceed to secure checkout
-5. Fill delivery details (PIN 735101 validation)
-6. Accept Terms & Conditions
-7. Place order (generates unique Order ID)
-8. Receive confirmation email
-9. Executive calls for payment confirmation
+## Quick start (local)
+1. Open a terminal (PowerShell) and serve the project root. Serving is recommended because some browsers restrict local file requests:
+```powershell
+cd 'C:\Users\boser\Downloads\aurevo-ecommerce'
+# If you have Python 3 installed
+python -m http.server 8000
+# open http://localhost:8000/index.html in your browser
+```
+2. Alternatively double-click `index.html` to open via `file://` (may work, but server is preferred).
 
-### Admin View (Google Sheets)
-- **Orders Sheet**: Complete customer and order information
-- **Order Items Sheet**: Individual product details per order
-- **Email Notifications**: Automatic customer confirmations and admin alerts
+## File map (detailed)
+- `index.html`
+	- Homepage. Product grid with small carousels inside each product card. Each product card uses `data-product` to identify its carousel state.
+- `product1.html` … `product6.html`
+	- Product detail pages. Include image gallery, size selection, and sticky bottom action (Add to Cart / Buy Now).
+- `style.css`
+	- Global styling (variables, header, badges, layout tokens). Large file — contains branded color tokens and many component rules.
+- `product-page.css`
+	- Styles scoped to product detail pages (product layout, thumbnails, flipkart-style layout in this project).
+- `script.js`
+	- Large utility and feature script. Contains a CarouselManager (for larger banner/carousels) and other shared helpers.
+- `simple-carousel.js`
+	- Homepage product-card carousel logic (initializes `.product-image-container[data-product]` nodes). Exposes `nextProductImage`, `prevProductImage`, `goToProductImage` as globals for inline handlers in `index.html`.
+- `simple-product-carousel.js` / `product-carousel.js`
+	- Helpers used by the product pages for image switching and gallery controls.
+- `cart-wishlist.js`
+	- Implements `CartWishlistManager` — cart and wishlist logic, localStorage persistence, modal rendering, badges and UI helpers.
+- `product-page.js`
+	- Product page specific behaviors (size selection, buy flow, updating main image from thumbnails).
+- Images & assets (folders)
+	- e.g. `black-t-shirt/`, `beige-t-shirt/`, `grey-tshirt/` — product images used by pages.
 
-## 🎨 Customization
+## Cart & Wishlist — behavior and API
+The core cart/wishlist logic lives in `cart-wishlist.js` as a JS class `CartWishlistManager` and is instantiated as `window.cartWishlist`. Use this object in the console for debugging.
 
-### Brand Colors
-```css
---rolex-green: #005A2B;      /* Primary Brand Color */
---luxury-gold: #D4AF37;      /* Accent Gold */
---rolex-light: #1E8449;      /* Hover States */
---background: #F8F8F5;       /* Soft Background */
+### Public methods available on `cartWishlist` (runtime)
+- `addToCart(productId, productData)`
+	- productId: string (e.g. `heritage-crewneck`)
+	- productData: object containing at least: `{ name, price, originalPrice, image, size, color }`
+	- Returns: `true` on success. Persists to `localStorage` key `aurevo_cart`.
+- `removeFromCart(productId, size, color)`
+	- Removes matching item (by id + size + color).
+- `getCartTotal()`
+	- Returns numeric total (sum price × qty).
+- `getCartCount()`
+	- Returns total item quantity (sum of quantities).
+- `clearCart()`
+	- Clears local cart and updates UI.
+- `addToWishlist(productId, productData)`
+	- Adds item to wishlist and persists to `aurevo_wishlist`.
+- `removeFromWishlist(productId)`
+- `toggleWishlist(productId, productData)`
+- `isInWishlist(productId)`
+- `showCartModal()` / `showWishlistModal()`
+	- Render lightweight modal with contents (modal is appended to `document.body`).
+- `goToCheckout()`
+	- Redirects to `checkout.html` (if cart not empty).
+
+### Data schema examples
+- Cart item (stored in `aurevo_cart` — array):
+```json
+{
+	"id": "heritage-crewneck",
+	"name": "Black Essential Tee",
+	"price": 349,
+	"originalPrice": 1799,
+	"image": "black-t-shirt/Untitled design (5).png",
+	"size": "M",
+	"color": "Default",
+	"quantity": 1,
+	"addedAt": 1690000000000
+}
 ```
 
-### Typography
-- **Display**: Playfair Display (headings)
-- **Heading**: Cormorant Garamond (subheadings)
-- **Body**: Source Sans 3 (content)
+- Wishlist item (stored in `aurevo_wishlist` — array): similar to cart item but without `quantity`.
 
-### Adding New Products
-1. Create new product HTML file (e.g., `product3.html`)
-2. Update the product grid in `index.html`
-3. Add product data to `cart-wishlist.js`
-4. Update image sources and product information
+## Homepage carousels and how to add a new product
+- The homepage carousel system (`simple-carousel.js`) is keyed by the `data-product` value on `.product-image-container` elements.
+- To add a new product card: ensure `data-product` is unique, add the `product-image-container` markup with `.product-image` images, arrows calling `prevProductImage('your-key')` / `nextProductImage('your-key')`, and dot elements that call `goToProductImage('your-key', index)`.
 
-## 📱 Browser Support
+### Example minimal product card markup (copy an existing card and update `data-product` and images):
+```html
+<div class="product-card">
+	<div class="product-image-container" data-product="my-new-key">
+		<img class="product-image active" src="images/my1.png">
+		<img class="product-image" src="images/my2.png">
+		<button onclick="event.stopPropagation(); prevProductImage('my-new-key')">‹</button>
+		<button onclick="event.stopPropagation(); nextProductImage('my-new-key')">›</button>
+		<div class="product-dots">
+			<span onclick="event.stopPropagation(); goToProductImage('my-new-key',0)"></span>
+		</div>
+	</div>
+</div>
+```
 
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+## Product page gallery
+- Product pages use `product-page.js` and `simple-product-carousel.js` to create a sticky image gallery with thumbnails. When you add or change images there, ensure `img` elements have the correct `id` attributes if other scripts expect them.
 
-## 🔒 Security Features
+## Debugging & developer utilities
+- In browser DevTools console:
+	- `window.cartWishlist` — inspect cart/wishlist state and call methods interactively.
+	- `localStorage.getItem('aurevo_cart')` — raw JSON string for cart.
+	- `window.testProductCarousels()` — helper to exercise carousels across product cards (defined in `simple-carousel.js`).
 
-- **Input Validation**: All forms validated client and server-side
-- **CORS Protection**: Secure API endpoints
-- **Data Encryption**: HTTPS-only communication
-- **PIN Validation**: Geographic delivery restriction
-- **Terms Acceptance**: Legal compliance tracking
+### Common issues & fixes
+- Duplicate `data-product` keys (homepage): causes two cards to share state so clicking arrows affects both. Fix: ensure unique `data-product` values per card.
+- Missing `.product-dot` elements or mismatched count: make sure dot count equals image count or the dot handlers may reference non-existent indices.
+- If badges don't appear: check that header badge spans exist with ids `cartBadge` / `wishlistBadge` and that `cart-wishlist.js` is loaded after the header in the HTML.
 
-## 📈 Analytics & Tracking
+## Accessibility checklist (recommendations)
+- Add `aria-live="polite"` area for cart count changes so assistive tech users hear updates.
+- Ensure modal focus trapping and focus return on close.
+- Add `alt` text for all product images (already present in many files; keep them descriptive).
+- Ensure controls (arrows, dots) are keyboard-focusable (`button` or `a`), and add `aria-label` describing the action.
+
+## Testing checklist (manual / quick)
+1. Start server: `python -m http.server 8000`.
+2. Load `http://localhost:8000/index.html`.
+3. For each product card:
+	 - Click right arrow — image shifts to next.
+	 - Click left arrow — goes back.
+	 - Click dots — jumps to correct image.
+	 - Swipe on a mobile device (or emulator) — gestures change images.
+4. Open a product page (e.g., `product1.html`):
+	 - Select a size and click **Add to Cart**.
+	 - Confirm `localStorage` has the item: `JSON.parse(localStorage.getItem('aurevo_cart'))`.
+	 - Click header cart button — modal shows items and totals.
+5. Clear cart with `cartWishlist.clearCart()` or `localStorage.removeItem('aurevo_cart')` and verify the badge hides.
+
+## Deployment & git workflow
+- The repo includes basic `GITBASH.MD` notes; to push to GitHub:
+```bash
+cd "C:\Users\boser\Downloads\aurevo-ecommerce"
+git init
+git remote set-url origin https://github.com/RatnadeepBose/Aurevo-E-commerce.git
+git add .
+git commit -m "Initial commit - new Aurevo E-Commerce project"
+git branch -M main
+git push -u origin main --force
+```
+> Note: `--force` will overwrite remote history — avoid it for day-to-day pushes unless you intentionally need to rewrite history.
+
+## Known issues and future improvements
+- Header duplication across pages — consider a runtime include or bundling header in a template.
+- Add focus trapping to modals and `aria-live` regions for better accessibility.
+- Add unit/integration tests and automated browser tests (Playwright / Cypress) for regression checks.
+- Consider bundling/minification and an optional small Node.js dev server for a more robust dev workflow.
+
+## Contributing
+1. Fork and clone the repo.
+2. Create a feature branch: `git checkout -b feature/your-feature`.
+3. Make changes, test locally, commit, and open a PR.
+
+## License
+See `LICENSE` in the repository root.
+
+If you'd like, I can now:
+- Add a small `CONTRIBUTING.md` with exact workflow and commit hooks, or
+- Inject a shared header include (small `header.js`) and update all pages to import it, or
+- Add a tiny Playwright test that cycles homepage carousels and verifies cart flows automatically.
+
+Tell me which follow-up you prefer and I will implement it.
 
 The site is ready for:
 - Google Analytics integration
