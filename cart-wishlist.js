@@ -264,8 +264,8 @@ class CartWishlistManager {
                 image: 'https://www.pacsun.com/dw/image/v2/AAJE_PRD/on/demandware.static/-/Sites-pacsun_storefront_catalog/default/dw16583eba/product_images/0740609850036NEW_00_020.jpg?sw=800'
             },
             'zip-front': {
-                name: 'Zip Front Sweatshirt',
-                price: 899,
+                name: 'Purple-Essential Tee',
+                price: 349,
                 originalPrice: 2199,
                 image: 'https://www.pacsun.com/dw/image/v2/AAJE_PRD/on/demandware.static/-/Sites-pacsun_storefront_catalog/default/dw24161ca2/product_images/0751513430001NEW_01_001.jpg?sw=800'
             }
