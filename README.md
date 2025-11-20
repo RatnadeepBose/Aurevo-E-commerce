@@ -306,6 +306,132 @@ If you'd like, I can now:
 
 Tell me which follow-up you prefer and I will implement it.
 
+## Optional: Use a Google Sheet as a product data source
+If you want a simple, non‑database backend for product data you can use a Google Sheet and fetch it from the site at runtime. Below are two common, reliable methods and example code you can copy into the project.
+
+Why use a sheet
+- Fast to edit product catalog without touching HTML
+- Great for demos / prototyping and non-technical content editors
+
+Important: keep the sheet read-only (do not put secrets or private keys in it). If you need protected data or higher scale, use a proper backend.
+
+1) Prepare your sheet
+- Create a sheet with a header row. Example columns:
+	- `id` (unique string)
+	- `name`
+	- `price` (number)
+	- `originalPrice` (number)
+	- `image` (URL or relative path)
+	- `images` (comma-separated URLs for gallery)
+	- `sizeOptions` (comma-separated, e.g. `XS,S,M,L`)
+	- `colorOptions` (comma-separated)
+	- `description`
+
+2) Publish / share and obtain a URL
+- Option A — CSV (easiest): File → Publish to web → choose the sheet and select `Comma-separated values (.csv)` → copy the generated `publish` URL. It will look like:
+	- `https://docs.google.com/spreadsheets/d/<SHEET_ID>/pub?output=csv`
+- Option B — gviz JSON (no library required): the gviz endpoint returns JSON wrapped in a small JS prefix. URL:
+	- `https://docs.google.com/spreadsheets/d/<SHEET_ID>/gviz/tq?tqx=out:json&gid=<GID>`
+
+3) Client-side fetch examples
+
+- CSV (recommended if you plan to use a CSV parser like PapaParse)
+
+Install PapaParse (optional, or include via CDN):
+```html
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+```
+
+Then (example):
+```javascript
+const csvUrl = 'https://docs.google.com/spreadsheets/d/<SHEET_ID>/pub?output=csv';
+fetch(csvUrl)
+	.then(r => r.text())
+	.then(csvText => {
+		const result = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+		const rows = result.data; // array of objects
+		const products = rows.map(r => ({
+			id: r.id,
+			name: r.name,
+			price: Number(r.price) || 0,
+			originalPrice: Number(r.originalPrice) || Number(r.price) || 0,
+			images: r.images ? r.images.split(',').map(s => s.trim()) : [r.image].filter(Boolean),
+			sizeOptions: r.sizeOptions ? r.sizeOptions.split(',').map(s=>s.trim()) : ['M'],
+			colorOptions: r.colorOptions ? r.colorOptions.split(',').map(s=>s.trim()) : ['Default'],
+			description: r.description || ''
+		}));
+
+		// now render the products on the page or wire them into existing code
+		console.log('Products loaded from sheet', products);
+	})
+	.catch(err => console.error('Error loading CSV sheet', err));
+```
+
+- gviz JSON (no external parser)
+
+```javascript
+const gvizUrl = 'https://docs.google.com/spreadsheets/d/<SHEET_ID>/gviz/tq?tqx=out:json&gid=<GID>';
+fetch(gvizUrl)
+	.then(r => r.text())
+	.then(txt => {
+		// gviz wraps JSON in some characters, trim them
+		const json = JSON.parse(txt.substring(txt.indexOf('{')));
+		const rows = json.table.rows.map(r => {
+			return json.table.cols.reduce((acc, col, i) => {
+				const key = (col.label || col.id || `col${i}`).toString();
+				const cell = r.c[i];
+				acc[key] = cell ? cell.v : '';
+				return acc;
+			}, {});
+		});
+
+		// rows is an array of plain objects from the sheet
+		console.log('GViz rows', rows);
+	})
+	.catch(err => console.error('GViz fetch failed', err));
+```
+
+4) Mapping sheet rows to your product rendering
+- Once you have a `products` array (see CSV example), you can:
+	- Generate product cards on the homepage by creating DOM nodes for each product and inserting them into `#productGrid`.
+	- On a product page, look up the product by `id` and populate fields (title, price, images).
+
+Simple DOM insertion example (homepage snippet):
+```javascript
+function createCard(p) {
+	const div = document.createElement('div');
+	div.className = 'product-card';
+	div.innerHTML = `
+		<div class="product-image-container" data-product="${p.id}">
+			<img class="product-image active" src="${p.images[0] || p.image}">
+			<!-- arrows and dots omitted for brevity; you can create them dynamically -->
+		</div>
+		<div class="product-info-section">
+			<h3 class="product-title">${p.name}</h3>
+			<div class="product-pricing"><span class="current-price">₹${p.price}</span></div>
+		</div>`;
+	return div;
+}
+
+// append to grid
+products.forEach(p => document.getElementById('productGrid').appendChild(createCard(p)));
+
+// after inserting, call the carousel initializer (if using the homepage carousels)
+if (window.initHomepageCarousels) window.initHomepageCarousels();
+```
+
+Tips & gotchas
+- Images: use public URLs (GitHub raw URLs, CDN, or hosted images). If you store relative paths in the sheet, those paths must match files in the repo and the site must be served from the same root.
+- CSV parsing: use a robust parser (PapaParse) if your fields may contain commas or quotes.
+- CORS: published CSV and the gviz endpoint are accessible from browsers. If you host a private sheet or use the Sheets API with credentials, you'll need a backend to proxy requests.
+- Caching: consider caching the fetched JSON in localStorage or only fetching once per session for performance.
+
+Security and production notes
+- Google Sheets published to web are public. Do not store secrets or private data.
+- For production or private catalogs, use a proper backend (Node/Express, Firebase, or any small API) and keep API keys/server-side.
+
+If you want, I can add a small script in the project that demonstrates loading products from a provided sheet ID (prompting for the sheet ID at runtime or using a config file). Tell me if you prefer the CSV or gviz approach and I will scaffold the loader.
+
 The site is ready for:
 - Google Analytics integration
 - Conversion tracking
