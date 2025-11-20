@@ -413,6 +413,32 @@
             </div>
         </footer>
 
+
+
+
+
+
+
+
+
+<script>
+    // Make cart button clickable in index.html
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartBtn = document.getElementById('cartBtn');
+        if (cartBtn) {
+            cartBtn.addEventListener('click', function() {
+                window.location.href = 'cart.html';
+            });
+        }
+    });
+</script>
+
+
+
+
+
+
+
         <script src="simple-product-carousel.js"></script>
         <script src="product-page.js"></script>
         <script src="cart-wishlist.js"></script>
