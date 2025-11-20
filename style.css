@@ -2394,7 +2394,7 @@ button:focus-visible,
     color: white;
 }
 
-/* Responsive Social Buttons */
+/* Responsive Social ButtonSs */
 @media (max-width: 768px) {
     .social-links {
         justify-content: center;
