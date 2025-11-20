@@ -5,15 +5,29 @@
 class CartWishlistManager {
     constructor() {
         this.cart = this.loadFromStorage('aurevo_cart') || [];
-        this.wishlist = this.loadFromStorage('aurevo_wishlist') || [];
         this.storageAvailable = this.checkStorageAvailability();
-        this.init();
+
+        // Defer init until DOM is ready to ensure elements can be injected/selected
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.init());
+        } else {
+            this.init();
+        }
     }
 
     init() {
-        this.updateBadges();
-        this.bindEvents();
-        this.updateProductStates();
+        // Ensure a global floating cart button is present on pages without a header cart
+        this.ensureGlobalCartButton();
+
+        try {
+            console.debug('CartWishlistManager: running init() - cart count:', this.getCartCount());
+            this.updateBadges();
+            this.bindEvents();
+            this.updateProductStates();
+            console.debug('CartWishlistManager: init complete');
+        } catch (err) {
+            console.error('CartWishlistManager.init error:', err);
+        }
     }
 
     // ===== STORAGE METHODS =====
@@ -116,101 +130,54 @@ class CartWishlistManager {
         this.showNotification('Cart cleared!', 'info');
     }
 
-    // ===== WISHLIST METHODS =====
-    addToWishlist(productId, productData) {
-        const existingItem = this.wishlist.find(item => item.id === productId);
-        
-        if (!existingItem) {
-            const wishlistItem = {
-                id: productId,
-                name: productData.name || 'Unknown Product',
-                price: productData.price || 0,
-                originalPrice: productData.originalPrice || productData.price,
-                image: productData.image || '',
-                addedAt: Date.now()
-            };
-            this.wishlist.push(wishlistItem);
-            this.saveToStorage('aurevo_wishlist', this.wishlist);
-            this.updateBadges();
-            this.updateProductStates();
-            this.showNotification('Added to wishlist!', 'success');
-            return true;
-        }
-        return false;
-    }
-
-    removeFromWishlist(productId) {
-        const originalLength = this.wishlist.length;
-        this.wishlist = this.wishlist.filter(item => item.id !== productId);
-        
-        if (this.wishlist.length < originalLength) {
-            this.saveToStorage('aurevo_wishlist', this.wishlist);
-            this.updateBadges();
-            this.updateProductStates();
-            this.showNotification('Removed from wishlist!', 'info');
-            return true;
-        }
-        return false;
-    }
-
-    toggleWishlist(productId, productData) {
-        const isInWishlist = this.wishlist.some(item => item.id === productId);
-        
-        if (isInWishlist) {
-            return this.removeFromWishlist(productId);
-        } else {
-            return this.addToWishlist(productId, productData);
-        }
-    }
-
-    isInWishlist(productId) {
-        return this.wishlist.some(item => item.id === productId);
-    }
+    
 
     // ===== UI UPDATE METHODS =====
     updateBadges() {
-        const cartBadges = document.querySelectorAll('#cartBadge');
-        const wishlistBadges = document.querySelectorAll('#wishlistBadge');
-        
-        const cartCount = this.getCartCount();
-        const wishlistCount = this.wishlist.length;
+        // Support multiple badge locations: header `#cartBadge`, injected `#globalCartBadge`, and inner `#cartBtn .badge`
+        let cartBadges;
+        try {
+            cartBadges = document.querySelectorAll('#cartBadge, #globalCartBadge, #cartBtn .badge');
+        } catch (err) {
+            console.error('updateBadges: selector error', err);
+            return;
+        }
+
+        // Determine cart count from multiple sources: internal state, and fallback to any other CartManager exposed on window
+        let cartCount = this.getCartCount();
+        try {
+            if (window.cartManager && typeof window.cartManager.getItemCount === 'function') {
+                const otherCount = Number(window.cartManager.getItemCount() || 0);
+                if (!isNaN(otherCount)) cartCount = Math.max(cartCount, otherCount);
+            }
+        } catch (err) {
+            console.warn('updateBadges: error reading external cartManager count', err);
+        }
+
+        // wishlist removed — no wishlist count
 
         cartBadges.forEach(badge => {
-            if (cartCount > 0) {
-                badge.textContent = cartCount > 99 ? '99+' : cartCount;
-                badge.style.display = 'flex';
-            } else {
-                badge.style.display = 'none';
+            try {
+                if (cartCount > 0) {
+                    badge.textContent = cartCount > 99 ? '99+' : cartCount;
+                    badge.classList.remove('hidden');
+                    badge.style.display = '';
+                } else {
+                    badge.classList.add('hidden');
+                    badge.textContent = '';
+                    badge.style.display = 'none';
+                }
+            } catch (err) {
+                console.error('updateBadges: error updating a badge element', err, badge);
             }
         });
 
-        wishlistBadges.forEach(badge => {
-            if (wishlistCount > 0) {
-                badge.textContent = wishlistCount > 99 ? '99+' : wishlistCount;
-                badge.style.display = 'flex';
-            } else {
-                badge.style.display = 'none';
-            }
-        });
+        console.debug('updateBadges: updated badges - cartCount:', cartCount, 'badgesFound:', cartBadges.length);
     }
 
     updateProductStates() {
-        const currentProductId = this.getCurrentProductId();
-        if (currentProductId) {
-            const wishlistBtns = document.querySelectorAll('#wishlistBtn, #wishlistHeaderBtn, #desktopWishlistBtn');
-            const isInWishlist = this.isInWishlist(currentProductId);
-            
-            wishlistBtns.forEach(btn => {
-                if (btn) {
-                    btn.classList.toggle('active', isInWishlist);
-                    if (isInWishlist) {
-                        btn.style.color = '#D4AF37';
-                    } else {
-                        btn.style.color = '';
-                    }
-                }
-            });
-        }
+        // Wishlist removed — no product wishlist state to update
+        return;
     }
 
     getCurrentProductId() {
@@ -278,16 +245,12 @@ class CartWishlistManager {
     bindEvents() {
         document.addEventListener('click', (e) => {
             // Cart button
-            if (e.target.closest('#cartBtn')) {
+            if (e.target.closest('#cartBtn, #globalCartBtn')) {
                 e.preventDefault();
                 this.showCartModal();
             }
             
-            // Wishlist buttons
-            if (e.target.closest('#wishlistBtn, #wishlistHeaderBtn, #desktopWishlistBtn')) {
-                e.preventDefault();
-                this.handleToggleWishlist();
-            }
+            // (wishlist removed)
             
             // Add to cart buttons
             if (e.target.closest('#addToCartBtn, #desktopAddToCartBtn')) {
@@ -303,6 +266,43 @@ class CartWishlistManager {
         });
 
         this.setupSizeSelection();
+    }
+
+    // Inject a floating cart button when a header cart (`#cartBtn`) is not present
+    ensureGlobalCartButton() {
+        try {
+            // If header cart exists, prefer it
+            if (document.querySelector('#cartBtn')) return;
+
+            // Avoid duplicate injection
+            if (document.querySelector('#globalCartBtn')) return;
+
+            const btn = document.createElement('button');
+            btn.id = 'globalCartBtn';
+            btn.className = 'icon-btn floating-cart-btn';
+            btn.type = 'button';
+            btn.setAttribute('aria-label', 'Open cart (floating)');
+
+            // Minimal cart icon (SVG) and badge placeholder
+            btn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 6h15l-1.5 9h-12L6 6z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="10" cy="20" r="1" fill="currentColor"></circle>
+                    <circle cx="18" cy="20" r="1" fill="currentColor"></circle>
+                </svg>
+                <span id="globalCartBadge" class="badge hidden" aria-hidden="true"></span>
+            `;
+
+            // Open cart on click
+            btn.addEventListener('click', (ev) => {
+                ev.preventDefault();
+                this.showCartModal();
+            });
+
+            document.body.appendChild(btn);
+        } catch (err) {
+            console.error('Could not create global cart button:', err);
+        }
     }
 
     setupSizeSelection() {
@@ -353,16 +353,7 @@ class CartWishlistManager {
         this.addToCart(productId, productData);
     }
 
-    handleToggleWishlist() {
-        const productId = this.getCurrentProductId();
-        const productData = this.getCurrentProductData();
-        
-        if (productId && productData) {
-            this.toggleWishlist(productId, productData);
-        } else {
-            this.showNotification('Product not found', 'error');
-        }
-    }
+    // (wishlist removed)
 
     handleBuyNow() {
         const productId = this.getCurrentProductId();
@@ -442,15 +433,7 @@ class CartWishlistManager {
         this.showModal('Your Cart', cartHTML);
     }
 
-    showWishlistModal() {
-        if (this.wishlist.length === 0) {
-            this.showNotification('Your wishlist is empty!', 'info');
-            return;
-        }
-
-        const wishlistHTML = this.generateWishlistHTML();
-        this.showModal('Your Wishlist', wishlistHTML);
-    }
+    // Wishlist feature removed
 
     generateCartHTML() {
         let html = '<div class="cart-items">';
@@ -483,25 +466,7 @@ class CartWishlistManager {
         return html;
     }
 
-    generateWishlistHTML() {
-        let html = '<div class="wishlist-items">';
-        
-        this.wishlist.forEach(item => {
-            html += `
-                <div class="wishlist-item">
-                    <img src="${this.escapeHtml(item.image)}" alt="${this.escapeHtml(item.name)}" class="wishlist-item-image">
-                    <div class="wishlist-item-details">
-                        <h4>${this.escapeHtml(item.name)}</h4>
-                        <div class="wishlist-item-price">₹${item.price.toLocaleString()}</div>
-                    </div>
-                    <button onclick="cartWishlist.removeFromWishlist('${item.id}')" class="remove-btn">×</button>
-                </div>
-            `;
-        });
-        
-        html += '</div>';
-        return html;
-    }
+    // Wishlist feature removed
 
     escapeHtml(text) {
         const map = {
