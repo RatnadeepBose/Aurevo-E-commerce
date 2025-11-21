@@ -398,6 +398,69 @@ ul {
     border-color: var(--rolex-green);
 }
 
+/* Sliding search bar styles: slides down from top */
+.search-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.0);
+    pointer-events: none;
+    z-index: 2200;
+}
+.search-modal.open {
+    background: rgba(0,0,0,0.18);
+    pointer-events: auto;
+}
+.search-modal-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    transform: translateY(-120%);
+    transition: transform 260ms cubic-bezier(0.2,0,0,1);
+    padding: 12px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.search-modal.open .search-modal-content {
+    transform: translateY(0);
+}
+.modal-search-input {
+    flex: 1 1 auto;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--platinum);
+    font-size: 1rem;
+    background: #fff;
+}
+.close-search {
+    background: transparent;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-hint {
+    margin-left: 8px;
+    color: var(--accent-green);
+    font-size: 0.85rem;
+}
+
+/* small highlight when open result is selected */
+.product-card.highlight {
+    box-shadow: 0 18px 48px rgba(0,90,43,0.18) !important;
+    transform: translateY(-6px) !important;
+}
+
+
+
+
 /* ===== Floating Global Cart Button (injected when header cart missing) ===== */
 .floating-cart-btn {
     position: fixed;

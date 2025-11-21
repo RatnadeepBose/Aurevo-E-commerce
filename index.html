@@ -19,17 +19,23 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <h1 class="logo">AUREVO</h1>
+                <div class="header-content">
+                        <h1 class="logo">AUREVO</h1>
 <p class="tagline" style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 700;">
-  conscious luxury
+    conscious luxury
 </p>
 
-        </div>
+                </div>
         <div class="header-actions">
           
+                <button class="icon-btn" id="searchBtn" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="6"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
                 <span class="badge hidden" id="wishlistBadge"></span>
-            </button>
+            
             <button class="icon-btn" id="cartBtn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="8" cy="21" r="1"></circle>
@@ -49,6 +55,7 @@
   Premium comfort meets conscious luxury
 </p>
             </div>
+            
             
             <div class="product-grid" id="productGrid">
                 <!-- Product 1 -->
@@ -398,6 +405,88 @@
 
 <script src="simple-carousel.js"></script>
 <script src="cart-wishlist.js"></script>
+ 
+<!-- Search modal (hidden by default) -->
+<div id="searchModal" class="search-modal" aria-hidden="true">
+    <div class="search-modal-content" role="dialog" aria-modal="true" aria-label="Product search">
+        <button id="closeSearch" class="icon-btn close-search" aria-label="Close search">✕</button>
+        <input id="modalSearchInput" class="modal-search-input" type="search" placeholder="Search products, colors, features..." aria-label="Search products">
+        <div id="searchHint" class="search-hint">Type and press Enter to focus results. Esc to close.</div>
+    </div>
+</div>
+
+<script>
+// Search modal behavior: open/close and simple client-side filtering
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.getElementById('searchBtn');
+    const searchModal = document.getElementById('searchModal');
+    const modalInput = document.getElementById('modalSearchInput');
+    const closeBtn = document.getElementById('closeSearch');
+
+    function openSearch() {
+        if (!searchModal) return;
+        searchModal.setAttribute('aria-hidden', 'false');
+        searchModal.classList.add('open');
+        setTimeout(() => modalInput && modalInput.focus(), 120);
+    }
+    function closeSearch() {
+        if (!searchModal) return;
+        searchModal.setAttribute('aria-hidden', 'true');
+        searchModal.classList.remove('open');
+    }
+
+    if (searchBtn) searchBtn.addEventListener('click', openSearch);
+    if (closeBtn) closeBtn.addEventListener('click', closeSearch);
+
+    // Close by clicking outside content
+    if (searchModal) {
+        searchModal.addEventListener('click', function(e) {
+            if (e.target === searchModal) closeSearch();
+        });
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeSearch();
+        if (e.key === 'k' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); openSearch(); }
+    });
+
+    // Filtering logic: same as prior behavior but live in modal
+    if (modalInput) {
+        modalInput.addEventListener('input', function() {
+            const q = this.value.trim().toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const title = (card.querySelector('.product-title') || {}).textContent || '';
+                const tags = (card.getAttribute('data-tags') || '') + ' ' + title;
+                const matches = q === '' || tags.toLowerCase().includes(q);
+                card.style.opacity = matches ? '1' : '0.25';
+                card.style.pointerEvents = matches ? 'auto' : 'none';
+            });
+        });
+        // Enter in modal focuses first matched card by scrolling to it
+        modalInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const q = this.value.trim().toLowerCase();
+                if (!q) return;
+                const cards = Array.from(document.querySelectorAll('.product-card'));
+                const found = cards.find(card => {
+                    const title = (card.querySelector('.product-title') || {}).textContent || '';
+                    const tags = (card.getAttribute('data-tags') || '') + ' ' + title;
+                    return (title + ' ' + tags).toLowerCase().includes(q);
+                });
+                if (found) {
+                    found.scrollIntoView({behavior:'smooth', block:'center'});
+                    found.classList.add('highlight');
+                    setTimeout(() => found.classList.remove('highlight'), 1200);
+                    closeSearch();
+                }
+            }
+        });
+    }
+});
+</script>
+ 
 
 
 <script>
